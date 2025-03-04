@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Github, Linkedin } from "lucide-react";
+import { Github } from "lucide-react";
 import { PrivacyPolicyModal } from "../modals/PrivacyPolicyModal";
 import { TermsOfServiceModal } from "../modals/TermsOfServiceModal";
 
