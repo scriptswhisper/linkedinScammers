@@ -1,19 +1,38 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
+import passport from 'passport';
+import session from 'express-session';
 import { connectDB } from './config/db';
+import { setupPassport } from './config/auth';
 import userRoutes from './routes/userRoutes';
 import scammerRoutes from './routes/scammerRoutes';
+import authRoutes from './routes/authRoutes';
 
 dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3005;
 
 // Middleware
-app.use(cors());
+app.use(cors({
+    origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+    credentials: true
+}));
 app.use(express.json());
 
+// Session setup for passport
+app.use(session({
+    secret: process.env.JWT_SECRET || 'your_session_secret',
+    resave: false,
+    saveUninitialized: false
+}));
+
+// Initialize passport
+app.use(passport.initialize());
+setupPassport();
+
 // Routes
+app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/scammers', scammerRoutes);
 
