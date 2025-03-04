@@ -48,6 +48,7 @@ const DashBoardPage: React.FC = () => {
 
   useEffect(() => {
     fetchScammers();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token, toast]);
 
   // Safe access to make sure we're working with arrays
