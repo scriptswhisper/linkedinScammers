@@ -113,7 +113,7 @@ export const ScammerCard: React.FC<ScammerCardProps> = ({
                     <span className="sr-only">Delete report</span>
                   </Button>
                 </AlertDialogTrigger>
-                <AlertDialogContent>
+                <AlertDialogContent className="bg-white">
                   <AlertDialogHeader>
                     <AlertDialogTitle>Are you sure?</AlertDialogTitle>
                     <AlertDialogDescription>
@@ -128,7 +128,7 @@ export const ScammerCard: React.FC<ScammerCardProps> = ({
                       disabled={isDeleting}
                       className="bg-red-500 hover:bg-red-600"
                     >
-                      {isDeleting ? "Deleting..." : "Delete"}
+                      {isDeleting ? "Deleting..." : "Confirm Delete"}
                     </AlertDialogAction>
                   </AlertDialogFooter>
                 </AlertDialogContent>
