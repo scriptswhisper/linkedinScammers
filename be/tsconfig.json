@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "target": "es2021",
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "strict": true,
+    "typeRoots": [
+      "./node_modules/@types",
+      "./types"
+    ],
+    "types": ["node", "jest"]
+  },
+  "include": ["src/**/*.ts", "server.ts", "__tests__/**/*.ts", "types/**/*.ts"],
+  "exclude": ["node_modules"]
+}
