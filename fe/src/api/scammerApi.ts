@@ -13,7 +13,7 @@ export interface ScammerReport {
 }
 
 export const reportScammer = async (data: ScammerReport, token: string) => {
-    const response = await axios.post(`${API_URL}/api/scammers/report`, data, {
+    const response = await axios.post(`${API_URL}/api/scammers`, data, {
         headers: {
             'Authorization': `Bearer ${token}`
         }
