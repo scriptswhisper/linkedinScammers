@@ -37,6 +37,10 @@ app.use(session({
 app.use(passport.initialize());
 setupPassport();
 
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
