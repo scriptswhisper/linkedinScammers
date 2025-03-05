@@ -210,9 +210,9 @@ npm run dev
 
 ### Scammer Model
 
-    ``` bash
+    ``` js
 
-        interface IScammer {
+    interface IScammer {
     _id: ObjectId;
     profileLink: string;
     name: string;
@@ -227,6 +227,7 @@ npm run dev
     firstReportedAt: Date;
     lastReportedAt: Date;
     }
+
     ```
 
 ## 🔄 API Routes
