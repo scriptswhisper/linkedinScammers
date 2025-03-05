@@ -4,13 +4,18 @@ import { User } from '../models/User';
 import { Request } from 'express';
 import fetch from 'node-fetch';
 
+// Determine the callback URL based on the environment
+const LINKEDIN_CALLBACK_URL = process.env.NODE_ENV === 'production'
+    ? process.env.LINKEDIN_CALLBACK_URL_PROD
+    : process.env.LINKEDIN_CALLBACK_URL_DEV || 'http://localhost:3005/api/auth/linkedin/callback';
+
 export const setupPassport = () => {
     // Configura la strategia LinkedIn per Passport
     passport.use(new LinkedInStrategy(
         {
             clientID: process.env.LINKEDIN_CLIENT_ID || '',
             clientSecret: process.env.LINKEDIN_CLIENT_SECRET || '',
-            callbackURL: process.env.LINKEDIN_CALLBACK_URL || 'http://localhost:3005/api/auth/linkedin/callback',
+            callbackURL: LINKEDIN_CALLBACK_URL,
             scope: ['openid', 'profile'],
             passReqToCallback: true,
             state: true,
