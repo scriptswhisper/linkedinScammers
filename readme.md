@@ -261,4 +261,4 @@ The project includes Jest for testing backend functionality. To run tests:
 ## 📄 License
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-<p align="center"> <em>Built to protect the LinkedIn community from scammers.</em> </p>
+<p align="center"> <em>-Built to protect the LinkedIn community from scammers-</em> </p>
