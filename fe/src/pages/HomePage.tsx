@@ -18,9 +18,16 @@ const HomePage = () => {
     <div className="container px-4 py-12 md:py-24">
       {/* Hero Section */}
       <div className="flex flex-col items-center text-center">
-        <div className="flex items-center space-x-2">
+        {/* Desktop view: horizontal layout (shield left of text) */}
+        <div className="hidden md:flex md:items-center md:space-x-2">
           <Shield className="h-12 w-12 text-primary" />
           <h1 className="text-4xl font-bold">LinkedIn Scammer Blacklist</h1>
+        </div>
+
+        {/* Mobile view: vertical layout (shield below text) */}
+        <div className="flex flex-col items-center space-y-3 md:hidden">
+          <h1 className="text-3xl font-bold">LinkedIn Scammer Blacklist</h1>
+          <Shield className="h-12 w-12 text-primary" />
         </div>
 
         <p className="mt-6 max-w-[42rem] text-xl text-muted-foreground">
@@ -31,7 +38,7 @@ const HomePage = () => {
         <div className="mt-8 flex flex-wrap justify-center gap-4">
           {isAuthenticated ? (
             <Link to="/report">
-              <Button size="lg" className="h-12 border-1  hover:bg-amber-50">
+              <Button size="lg" className="h-12 border-1 hover:bg-amber-50">
                 Report a Scammer
               </Button>
             </Link>
