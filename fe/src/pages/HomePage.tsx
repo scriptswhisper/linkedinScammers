@@ -37,13 +37,12 @@ const HomePage = () => {
             </Link>
           ) : (
             <>
-              <Link to="/register">
-                <Button size="lg" className="h-12">
-                  Register Now
-                </Button>
-              </Link>
               <Link to="/login">
-                <Button variant="outline" size="lg" className="h-12">
+                <Button
+                  variant="outline"
+                  size="lg"
+                  className="h-12 hover:bg-amber-50"
+                >
                   Login
                 </Button>
               </Link>
