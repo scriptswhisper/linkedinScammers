@@ -10,9 +10,9 @@ const router = express.Router();
 
 let frontendURL: string;
 if (process.env.NODE_ENV === 'production') {
-  frontendURL = process.env.FRONTEND_URL_PROD || 'https://prod.example.com';
+  frontendURL = process.env.FRONTEND_PROD_URL || 'https://prod.example.com';
 } else {
-  frontendURL = process.env.FRONTEND_URL_DEV || 'http://localhost:5173';
+  frontendURL = process.env.FRONTEND_LOCAL_URL || 'http://localhost:5173';
 }
 
 // Helper function to sign JWT token
