@@ -74,7 +74,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const loginWithLinkedIn = () => {
     // Redirect to the LinkedIn OAuth endpoint
-    window.location.href = "http://localhost:3005/api/auth/linkedin";
+    window.location.href =
+      process.env.LINKEDIN_CALLBACK_URL ||
+      "http://localhost:3005/api/auth/linkedin";
   };
 
   return (
