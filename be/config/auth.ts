@@ -9,6 +9,8 @@ const LINKEDIN_CALLBACK_URL = process.env.NODE_ENV === 'production'
     ? process.env.LINKEDIN_CALLBACK_URL_PROD
     : process.env.LINKEDIN_CALLBACK_URL_DEV || 'http://localhost:3005/api/auth/linkedin/callback';
 
+console.log('LinkedIn callback URL in BE auth.ts:', LINKEDIN_CALLBACK_URL);
+
 export const setupPassport = () => {
     // Configura la strategia LinkedIn per Passport
     passport.use(new LinkedInStrategy(
