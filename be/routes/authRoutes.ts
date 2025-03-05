@@ -2,7 +2,7 @@ import express from 'express';
 import passport from 'passport';
 import jwt from 'jsonwebtoken';
 import { IUser } from '../models/User';
-import { getUserProfile, updateUserProfile, deleteUserAccount } from '../controllers/authController';
+import { getUserProfile, deleteUserAccount } from '../controllers/authController';
 import { authenticateToken } from '../middleware/authMiddleware';
 import '../types/express';
 
@@ -23,17 +23,25 @@ const signToken = (user: IUser): string => {
 
 // Protected routes
 router.get('/profile', authenticateToken, getUserProfile);
-router.put('/profile', authenticateToken, updateUserProfile);
+// router.put('/profile', authenticateToken, updateUserProfile);
 router.delete('/profile', authenticateToken, deleteUserAccount);
 
 // LinkedIn authentication route
 router.get('/linkedin', passport.authenticate('linkedin'));
 
+let frontendURL: string;
+
+if (process.env.NODE_ENV === 'production') {
+  frontendURL = process.env.FRONTEND_URL_PROD || 'https://prod.example.com';
+} else {
+  frontendURL = process.env.FRONTEND_URL_DEV || 'http://localhost:5173';
+}
+
 // LinkedIn callback route
 router.get('/linkedin/callback',
   passport.authenticate('linkedin', {
     session: false,
-    failureRedirect: `${process.env.FRONTEND_URL || 'http://localhost:5173'}/login?error=linkedin_failed`
+    failureRedirect: `${frontendURL}/login?error=auth_failed`
   }),
   (req, res) => {
     try {
@@ -51,10 +59,10 @@ router.get('/linkedin/callback',
       const userBase64 = Buffer.from(JSON.stringify(userForClient)).toString('base64');
 
       // Redirect to frontend with token and user data
-      res.redirect(`${process.env.FRONTEND_URL || 'http://localhost:5173'}/auth/callback?token=${token}&user=${userBase64}`);
+      res.redirect(`${frontendURL}/auth/callback?token=${token}&user=${userBase64}`);
     } catch (error) {
       console.error('LinkedIn callback error:', error);
-      res.redirect(`${process.env.FRONTEND_URL || 'http://localhost:5173'}/login?error=server_error`);
+      res.redirect(`${frontendURL}/login?error=server_error`);
     }
   }
 );
