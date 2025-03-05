@@ -89,7 +89,7 @@ const ReportScammerPage: React.FC = () => {
         toast({
           variant: "destructive",
           title: "Authentication required",
-          description: "Please login to report a scammer",
+          description: "Please login to report a scam",
         });
         navigate("/login");
         return;

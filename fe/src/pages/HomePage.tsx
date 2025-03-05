@@ -39,7 +39,7 @@ const HomePage = () => {
           {isAuthenticated ? (
             <Link to="/report">
               <Button size="lg" className="h-12 border-1 hover:bg-amber-50">
-                Report a Scammer
+                Report a Scam
               </Button>
             </Link>
           ) : (
@@ -72,7 +72,7 @@ const HomePage = () => {
           <CardHeader className="space-y-1">
             <CardTitle className="flex items-center gap-2">
               <AlertTriangle className="h-5 w-5 text-destructive" />
-              Report Scammers
+              Report Scam
             </CardTitle>
             <CardDescription>
               Help protect others in the community

@@ -57,7 +57,7 @@ const NavBar = () => {
                   className="text-sm font-medium transition-colors hover:text-primary"
                 >
                   <div className="flex items-center gap-1">
-                    <PlusCircle className="h-4 w-4" /> Report Scammer
+                    <PlusCircle className="h-4 w-4" /> Report Scam
                   </div>
                 </Link>
 
@@ -159,7 +159,7 @@ const NavBar = () => {
                       <Link to="/dashboard">Dashboard</Link>
                     </DropdownMenuItem>
                     <DropdownMenuItem asChild>
-                      <Link to="/report">Report Scammer</Link>
+                      <Link to="/report">Report Scam</Link>
                     </DropdownMenuItem>
                     <DropdownMenuItem onClick={logout}>Logout</DropdownMenuItem>
                   </>
