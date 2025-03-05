@@ -20,10 +20,9 @@ exports.app = app;
 const PORT = process.env.PORT || 3005;
 // Middleware
 app.use((0, cors_1.default)({
-    origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+    origin: process.env.FRONTEND_LOCAL_URL || 'http://localhost:5173', // This is wrong!
     credentials: true
 }));
-app.use(express_1.default.json());
 // Session setup for passport
 app.use((0, express_session_1.default)({
     secret: process.env.JWT_SECRET || 'your_session_secret',
