@@ -4,6 +4,11 @@ import { User } from '../models/User';
 import { Request } from 'express';
 import fetch from 'node-fetch';
 
+
+
+console.log('NODE_ENV value:', process.env.NODE_ENV);
+console.log('LINKEDIN_CALLBACK_URL_PROD value:', process.env.LINKEDIN_CALLBACK_URL_PROD);
+console.log('LINKEDIN_CALLBACK_URL_DEV value:', process.env.LINKEDIN_CALLBACK_URL_DEV);
 // Determine the callback URL based on the environment
 const LINKEDIN_CALLBACK_URL = process.env.NODE_ENV === 'production'
     ? process.env.LINKEDIN_CALLBACK_URL_PROD
