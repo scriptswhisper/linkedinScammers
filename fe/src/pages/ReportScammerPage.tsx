@@ -242,7 +242,10 @@ const ReportScammerPage: React.FC = () => {
               )}
             />
 
-            <Button type="submit" className="w-full">
+            <Button
+              type="submit"
+              className="w-full hover:bg-amber-50 border-1 hover:cursor-pointer"
+            >
               Submit Report
             </Button>
           </form>

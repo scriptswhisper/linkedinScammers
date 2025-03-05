@@ -31,7 +31,7 @@ const HomePage = () => {
         <div className="mt-8 flex flex-wrap justify-center gap-4">
           {isAuthenticated ? (
             <Link to="/report">
-              <Button size="lg" className="h-12">
+              <Button size="lg" className="h-12 border-1  hover:bg-amber-50">
                 Report a Scammer
               </Button>
             </Link>

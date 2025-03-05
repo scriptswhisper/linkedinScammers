@@ -216,7 +216,11 @@ export const ScammerSearch: React.FC = () => {
               })}
               className="flex-1"
             />
-            <Button type="submit" disabled={loading}>
+            <Button
+              type="submit"
+              disabled={loading}
+              className="border-1 hover:bg-amber-50"
+            >
               {loading ? "Searching..." : "Check"}
             </Button>
           </div>

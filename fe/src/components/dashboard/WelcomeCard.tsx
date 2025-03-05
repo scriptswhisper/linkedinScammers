@@ -22,7 +22,7 @@ export const WelcomeCard: React.FC<WelcomeCardProps> = ({ username }) => {
         <p className="text-muted-foreground mb-4">
           Thank you for helping keep the LinkedIn community safe from scammers.
         </p>
-        <Button asChild>
+        <Button asChild className="border-1  hover:bg-amber-50">
           <Link to="/report">Report a New Scammer</Link>
         </Button>
       </CardContent>

@@ -65,7 +65,7 @@ const NavBar = () => {
                   <DropdownMenuTrigger asChild>
                     <Button
                       variant="ghost"
-                      className="relative h-8 w-8 rounded-full overflow-hidden p-0 border-1"
+                      className="relative h-8 w-8 rounded-full overflow-hidden p-0 border-1 hover:cursor-pointer"
                     >
                       {user?.profilePicture ? (
                         <img
@@ -137,7 +137,11 @@ const NavBar = () => {
 
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon">
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="hover:cursor-pointer"
+                >
                   <Menu />
                 </Button>
               </DropdownMenuTrigger>

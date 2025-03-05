@@ -194,7 +194,7 @@ export const ScammerCard: React.FC<ScammerCardProps> = ({
       </CardContent>
 
       <CardFooter>
-        <Button variant="outline" asChild className="w-full">
+        <Button variant="outline" asChild className="w-full  hover:bg-amber-50">
           <a
             href={
               scammer.profileLink.startsWith("http")
