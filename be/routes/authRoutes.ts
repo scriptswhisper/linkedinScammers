@@ -71,4 +71,14 @@ router.get('/linkedin/callback',
   }
 );
 
+// In authRoutes.ts
+router.get('/linkedin-config', (req, res) => {
+  res.json({
+    callbackUrl: process.env.NODE_ENV === 'production'
+      ? process.env.LINKEDIN_CALLBACK_URL_PROD
+      : process.env.LINKEDIN_CALLBACK_URL_DEV,
+    nodeEnv: process.env.NODE_ENV
+  });
+});
+
 export default router;

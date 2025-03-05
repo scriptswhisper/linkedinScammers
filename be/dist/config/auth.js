@@ -8,12 +8,17 @@ const passport_1 = __importDefault(require("passport"));
 const passport_linkedin_oauth2_1 = require("passport-linkedin-oauth2");
 const User_1 = require("../models/User");
 const node_fetch_1 = __importDefault(require("node-fetch"));
+// Determine the callback URL based on the environment
+const LINKEDIN_CALLBACK_URL = process.env.NODE_ENV === 'production'
+    ? process.env.LINKEDIN_CALLBACK_URL_PROD
+    : process.env.LINKEDIN_CALLBACK_URL_DEV || 'http://localhost:3005/api/auth/linkedin/callback';
+console.log('LinkedIn callback URL in BE auth.ts:', LINKEDIN_CALLBACK_URL);
 const setupPassport = () => {
     // Configura la strategia LinkedIn per Passport
     passport_1.default.use(new passport_linkedin_oauth2_1.Strategy({
         clientID: process.env.LINKEDIN_CLIENT_ID || '',
         clientSecret: process.env.LINKEDIN_CLIENT_SECRET || '',
-        callbackURL: process.env.LINKEDIN_CALLBACK_URL || 'http://localhost:3005/api/auth/linkedin/callback',
+        callbackURL: LINKEDIN_CALLBACK_URL,
         scope: ['openid', 'profile'],
         passReqToCallback: true,
         state: true,

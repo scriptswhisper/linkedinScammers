@@ -10,6 +10,13 @@ const authController_1 = require("../controllers/authController");
 const authMiddleware_1 = require("../middleware/authMiddleware");
 require("../types/express");
 const router = express_1.default.Router();
+let frontendURL;
+if (process.env.NODE_ENV === 'production') {
+    frontendURL = process.env.FRONTEND_URL_PROD || 'https://prod.example.com';
+}
+else {
+    frontendURL = process.env.FRONTEND_URL_DEV || 'http://localhost:5173';
+}
 // Helper function to sign JWT token
 const signToken = (user) => {
     const payload = {
@@ -26,13 +33,6 @@ router.get('/profile', authMiddleware_1.authenticateToken, authController_1.getU
 router.delete('/profile', authMiddleware_1.authenticateToken, authController_1.deleteUserAccount);
 // LinkedIn authentication route
 router.get('/linkedin', passport_1.default.authenticate('linkedin'));
-let frontendURL;
-if (process.env.NODE_ENV === 'production') {
-    frontendURL = process.env.FRONTEND_URL_PROD || 'https://prod.example.com';
-}
-else {
-    frontendURL = process.env.FRONTEND_URL_DEV || 'http://localhost:5173';
-}
 console.log("frontend from server authRoutes: ", frontendURL);
 // LinkedIn callback route
 router.get('/linkedin/callback', passport_1.default.authenticate('linkedin', {
