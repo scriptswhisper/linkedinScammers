@@ -13,12 +13,19 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3005;
 
-// Middleware
+
+
+// Update to this
+const corsOrigin = process.env.NODE_ENV === 'production'
+    ? process.env.FRONTEND_PROD_URL
+    : process.env.FRONTEND_LOCAL_URL || 'http://localhost:5173';
+
+console.log('CORS origin set to:', corsOrigin);
+
 app.use(cors({
-    origin: process.env.FRONTEND_LOCAL_URL || 'http://localhost:5173',  // This is wrong!
+    origin: corsOrigin,
     credentials: true
 }));
-
 // Session setup for passport
 app.use(session({
     secret: process.env.JWT_SECRET || 'your_session_secret',
