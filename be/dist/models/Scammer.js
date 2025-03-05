@@ -45,11 +45,11 @@ const reportSchema = new mongoose_1.Schema({
     },
     name: {
         type: String,
-        required: true
+        required: false
     },
     company: {
         type: String,
-        required: true
+        required: false
     },
     notes: {
         type: String,
