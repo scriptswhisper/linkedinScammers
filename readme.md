@@ -161,30 +161,29 @@ The authentication flow:
   
 4. Start the backend server
 
-``` bash
-npm run dev 
-```
+   ``` bash
+   npm run dev 
+   ```
 
 ### FrontEnd Setup
 
 1. Navigate to the frontend directory
-```bash
-cd ../fe 
-```
+   ```bash
+   cd ../fe 
+   ```
 2. Install dependencies
     ```bash
-   npm install
+    npm install
     ```
 3. Create a .env file in the fe directory
 
-``` config
-VITE_ENV_MODE=development
-# VITE_ENV_MODE=production
-
-   VITE_PROD_SERVER_URL=https://your-production-backend-url.com
-   VITE_LOCAL_SERVER_URL=http://localhost:3005
+   ``` config
+   VITE_ENV_MODE=development
+   # VITE_ENV_MODE=production
+  VITE_PROD_SERVER_URL=https://your-production-backend-url.com
+      VITE_LOCAL_SERVER_URL=http://localhost:3005
     
-```
+   ```
 
 4. Start the frontend development server
 
