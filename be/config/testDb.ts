@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
-
+import dotenv from 'dotenv';
+dotenv.config();
 const connectTestDB = async (): Promise<void> => {
     try {
         const testMongoURI = process.env.TEST_MONGO_URI || 'mongodb://localhost:27017/linkedin-scammers-test';

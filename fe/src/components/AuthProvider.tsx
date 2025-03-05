@@ -1,8 +1,8 @@
 import React, { useState, useEffect, ReactNode } from "react";
 import { AuthContext, User } from "../context/AuthContext";
 import { useLocation } from "react-router-dom";
-
 // Props for the AuthProvider component
+// const API_URL = (import.meta as any).env?.VITE_API_URL || 'http://localhost:3005';
 interface AuthProviderProps {
   children: ReactNode;
 }
@@ -74,9 +74,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const loginWithLinkedIn = () => {
     // Redirect to the LinkedIn OAuth endpoint
-    window.location.href =
-      process.env.LINKEDIN_CALLBACK_URL ||
-      "http://localhost:3005/api/auth/linkedin";
+    window.location.href = "http://localhost:3005/api/auth/linkedin";
   };
 
   return (
