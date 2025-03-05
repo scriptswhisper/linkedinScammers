@@ -28,9 +28,19 @@ import { reportScammer } from "../api/scammerApi";
 
 // Schema aggiornato per corrispondere ai valori enum del backend
 const formSchema = z.object({
-  profileLink: z.string().url("Please enter a valid LinkedIn URL"),
-  name: z.string().optional(), // Reso opzionale
-  company: z.string().optional(), // Reso opzionale
+  profileLink: z
+    .string()
+    .url("Please enter a valid URL")
+    .refine(
+      (url) =>
+        /^https?:\/\/(www\.)?linkedin\.com\/in\/[a-zA-Z0-9_-]+\/?.*$/.test(url),
+      {
+        message:
+          "Please enter a valid LinkedIn profile URL (e.g., https://www.linkedin.com/in/username)",
+      }
+    ),
+  name: z.string().optional(),
+  company: z.string().optional(),
   scamType: z.enum(
     [
       "download-suspicios-repo",

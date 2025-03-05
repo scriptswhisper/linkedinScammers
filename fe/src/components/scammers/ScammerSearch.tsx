@@ -210,8 +210,10 @@ export const ScammerSearch: React.FC = () => {
               {...register("profileLink", {
                 required: "LinkedIn URL is required",
                 pattern: {
-                  value: /linkedin\.com\/in\//,
-                  message: "Please enter a valid LinkedIn profile URL",
+                  value:
+                    /^https?:\/\/(www\.)?linkedin\.com\/in\/[a-zA-Z0-9_-]+\/?.*$/,
+                  message:
+                    "Please enter a valid LinkedIn profile URL (e.g., https://www.linkedin.com/in/username)",
                 },
               })}
               className="flex-1"
