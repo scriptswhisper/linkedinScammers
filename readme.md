@@ -217,7 +217,8 @@ npm run dev
     name: string;
     company: string;
     reports: Array<{
-        reportedBy: ObjectId; // Reference to User
+        // Reference to User
+        reportedBy: ObjectId;
         scamType: string;
         notes: string;
         createdAt: Date;
