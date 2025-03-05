@@ -211,7 +211,6 @@ npm run dev
 ### Scammer Model
 
     ``` js
-
     interface IScammer {
     _id: ObjectId;
     profileLink: string;
