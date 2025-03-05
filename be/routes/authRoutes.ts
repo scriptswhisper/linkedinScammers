@@ -15,6 +15,8 @@ if (process.env.NODE_ENV === 'production') {
   frontendURL = process.env.FRONTEND_LOCAL_URL || 'http://localhost:5173';
 }
 
+console.log("frontend from server authRoutes: ", frontendURL)
+
 // Helper function to sign JWT token
 const signToken = (user: IUser): string => {
   const payload = {
