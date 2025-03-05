@@ -53,11 +53,11 @@ const reportSchema = new Schema({
   },
   name: {
     type: String,
-    required: true
+    required: false
   },
   company: {
     type: String,
-    required: true
+    required: false
   },
   notes: {
     type: String,
