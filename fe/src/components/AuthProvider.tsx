@@ -13,7 +13,6 @@ interface AuthProviderProps {
   children: ReactNode;
 }
 
-console.log("BASE_URL in AuthProvider.tsx FE : ", BASE_URL);
 
 // Auth Provider component that will wrap your app
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {

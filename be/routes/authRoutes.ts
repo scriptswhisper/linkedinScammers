@@ -8,6 +8,13 @@ import '../types/express';
 
 const router = express.Router();
 
+let frontendURL: string;
+if (process.env.NODE_ENV === 'production') {
+  frontendURL = process.env.FRONTEND_URL_PROD || 'https://prod.example.com';
+} else {
+  frontendURL = process.env.FRONTEND_URL_DEV || 'http://localhost:5173';
+}
+
 // Helper function to sign JWT token
 const signToken = (user: IUser): string => {
   const payload = {
@@ -29,13 +36,8 @@ router.delete('/profile', authenticateToken, deleteUserAccount);
 // LinkedIn authentication route
 router.get('/linkedin', passport.authenticate('linkedin'));
 
-let frontendURL: string;
 
-if (process.env.NODE_ENV === 'production') {
-  frontendURL = process.env.FRONTEND_URL_PROD || 'https://prod.example.com';
-} else {
-  frontendURL = process.env.FRONTEND_URL_DEV || 'http://localhost:5173';
-}
+
 
 console.log("frontend from server authRoutes: ", frontendURL)
 
