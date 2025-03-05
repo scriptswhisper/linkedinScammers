@@ -160,37 +160,43 @@ The authentication flow:
     ```
   
 4. Start the backend server
-    ```bash
-   npm run dev 
-   ```
+
+``` bash
+npm run dev 
+```
 
 ### FrontEnd Setup
 
 1. Navigate to the frontend directory
-    ```bash
-   cd ../fe 
-   ```
+```bash
+cd ../fe 
+```
 2. Install dependencies
     ```bash
    npm install
     ```
 3. Create a .env file in the fe directory
-    ```bash
-   VITE_ENV_MODE=development
-   # VITE_ENV_MODE=production
+
+``` config
+VITE_ENV_MODE=development
+# VITE_ENV_MODE=production
 
    VITE_PROD_SERVER_URL=https://your-production-backend-url.com
    VITE_LOCAL_SERVER_URL=http://localhost:3005
-    ```
+    
+```
+
 4. Start the frontend development server
-    ```bash
-   npm run dev
-    ```
+
+``` bash
+npm run dev
+```
 
 ## 🗄️ Database Model
 
 ### User Model
-    ```bash
+
+    ``` bash
     interface IUser {
     _id: ObjectId;
     username: string;
@@ -203,7 +209,8 @@ The authentication flow:
     ```
 
 ### Scammer Model
-    ```bash
+
+    ``` bash
         interface IScammer {
     _id: ObjectId;
     profileLink: string;
@@ -240,12 +247,14 @@ The authentication flow:
 ## 🧪 Testing
 
 The project includes Jest for testing backend functionality. To run tests:
-```bash
-    cd be
-    npm test    
+
+``` bash
+cd be
+npm test    
  ```
  To run tests in watch mode:
-```bash
+
+``` bash
  npm run test:watch
  ```
 
