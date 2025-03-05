@@ -7,7 +7,7 @@ import { authenticateToken } from '../middleware/authMiddleware';
 import '../types/express';
 
 const router = express.Router();
-
+console.log("***************node.env from be in authRoutes begin****** ", process.env.NODE_ENV);
 let frontendURL: string;
 if (process.env.NODE_ENV === 'production') {
   frontendURL = process.env.FRONTEND_PROD_URL || 'https://prod.example.com';
