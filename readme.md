@@ -195,7 +195,7 @@ npm run dev
 
 ### User Model
 
-    ``` bash
+``` bash
     interface IUser {
     _id: ObjectId;
     username: string;
@@ -205,7 +205,7 @@ npm run dev
     lastLogin?: Date;
     isActive: boolean;
     }
-    ```
+```
 
 ### Scammer Model
 
