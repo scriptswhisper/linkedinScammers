@@ -10,13 +10,15 @@ const authController_1 = require("../controllers/authController");
 const authMiddleware_1 = require("../middleware/authMiddleware");
 require("../types/express");
 const router = express_1.default.Router();
+console.log("***************node.env from be in authRoutes begin****** ", process.env.NODE_ENV);
 let frontendURL;
 if (process.env.NODE_ENV === 'production') {
-    frontendURL = process.env.FRONTEND_URL_PROD || 'https://prod.example.com';
+    frontendURL = process.env.FRONTEND_PROD_URL || 'https://prod2.example.com';
 }
 else {
-    frontendURL = process.env.FRONTEND_URL_DEV || 'http://localhost:5173';
+    frontendURL = process.env.FRONTEND_LOCAL_URL || 'http://localhost:5173';
 }
+console.log("frontend from server authRoutes: ", frontendURL);
 // Helper function to sign JWT token
 const signToken = (user) => {
     const payload = {
@@ -57,6 +59,15 @@ router.get('/linkedin/callback', passport_1.default.authenticate('linkedin', {
         console.error('LinkedIn callback error:', error);
         res.redirect(`${frontendURL}/login?error=server_error`);
     }
+});
+// In authRoutes.ts
+router.get('/linkedin-config', (req, res) => {
+    res.json({
+        callbackUrl: process.env.NODE_ENV === 'production'
+            ? process.env.LINKEDIN_CALLBACK_URL_PROD
+            : process.env.LINKEDIN_CALLBACK_URL_DEV,
+        nodeEnv: process.env.NODE_ENV
+    });
 });
 exports.default = router;
 //# sourceMappingURL=authRoutes.js.map
