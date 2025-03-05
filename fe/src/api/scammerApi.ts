@@ -3,6 +3,29 @@ import axios from 'axios';
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const API_URL = (import.meta as any).env?.VITE_API_URL || 'http://localhost:3005';
 
+export interface ScammerSearchResponse {
+    success: boolean;
+    found: boolean;
+    report: {
+        totalReports: number;
+        firstReportedAt: string;
+        lastReportedAt: string;
+        name?: string;
+        company?: string;
+        reports: Array<{
+            _id: string;
+            reportedBy: {
+                _id: string;
+                username: string;
+            };
+            scamType: string;
+            notes: string;
+            createdAt: string;
+        }>;
+    } | null;
+}
+
+
 // Aggiorna l'interfaccia ScammerReport per rendere name e company opzionali
 export interface ScammerReport {
     profileLink: string;

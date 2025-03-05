@@ -48,7 +48,7 @@ export const ScammerSearch: React.FC = () => {
     setLoading(true);
     try {
       const result = await searchScammer(data.profileLink, token || "");
-      setSearchResult(result);
+      setSearchResult(result as ScammerSearchResponse);
     } catch (error) {
       console.error("Error searching for scammer:", error);
       toast({

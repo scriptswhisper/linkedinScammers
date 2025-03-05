@@ -3,22 +3,32 @@ import { Scammer, IScammer, IReportInput } from '../models/Scammer';
 import mongoose from 'mongoose';
 import '../types/express';
 
-// Function to normalize LinkedIn profile URLs
 function normalizeProfileLink(url: string): string {
+
     if (!url) return '';
 
     let normalized = url.toLowerCase().trim();
-    normalized = normalized.split(/[?#]/)[0];
-    normalized = normalized.replace(/\/+$/, '');
-    normalized = normalized.replace(/https?:\/\/(www\.)?(linkedin\.com|lnkd\.in)\//, 'linkedin.com/');
 
-    if (!normalized.startsWith('http') && !normalized.startsWith('linkedin.com')) {
-        normalized = 'linkedin.com/' + normalized;
+    // Remove any protocol, www, and extra spaces
+    normalized = normalized
+        .replace(/^https?:\/\/(www\.)?/, '')
+        .replace(/\s+/g, '');
+
+    // Extract the username part after /in/
+    const inMatch = normalized.match(/linkedin\.com\/in\/([^\/\?#]+)/i);
+    if (inMatch) {
+        normalized = `linkedin.com/in/${inMatch[1]}`;
+    } else if (!normalized.includes('linkedin.com/in/')) {
+        // If the URL doesn't contain /in/, assume it's just the username
+        const username = normalized.replace(/^.*?([^\/\?#]+)$/, '$1');
+        normalized = `linkedin.com/in/${username}`;
     }
+
+
+
 
     return normalized;
 }
-
 // Create scammer report
 export const createScammer = async (req: Request, res: Response): Promise<void> => {
     try {
@@ -156,46 +166,51 @@ export const getScammers = async (req: Request, res: Response): Promise<void> =>
 };
 
 // Search for a scammer
+// Update the searchScammer function to include more logging
 export const searchScammer = async (req: Request, res: Response): Promise<void> => {
     try {
-        const { profileLink: rawProfileLink } = req.query;
+        const { profileLink } = req.query;
 
-        if (!rawProfileLink || typeof rawProfileLink !== 'string') {
+        if (!profileLink || typeof profileLink !== 'string') {
             res.status(400).json({
                 success: false,
-                message: 'Profile link is required',
-                errorCode: 'MISSING_PROFILE_LINK'
+                message: 'Profile link is required'
             });
             return;
         }
 
-        const profileLink = normalizeProfileLink(rawProfileLink);
-        console.log('Searching for profile:', profileLink);
+        const normalizedLink = normalizeProfileLink(profileLink);
 
-        const scammer = await Scammer.findOne({ profileLink })
-            .populate('reports.reportedBy', 'username');
+
+        const scammer = await Scammer.findOne({
+            profileLink: { $regex: new RegExp('^' + normalizedLink + '$', 'i') }
+        }).populate('reports.reportedBy', 'username');
 
         if (!scammer) {
-            console.log('No scammer found for profile:', profileLink);
             res.json({
                 success: true,
-                found: false
+                found: false,
+                report: null
             });
             return;
         }
 
-        console.log('Search response:', { found: true, scammer });
         res.json({
             success: true,
             found: true,
-            scammer
+            report: {
+                totalReports: scammer.reports.length,
+                firstReportedAt: scammer.firstReportedAt,
+                lastReportedAt: scammer.lastReportedAt,
+                reports: scammer.reports
+            }
         });
+
     } catch (error) {
-        console.error('Error searching scammer:', error);
+        console.error('Search error:', error);
         res.status(500).json({
             success: false,
-            message: 'Error searching for scammer',
-            error: error instanceof Error ? error.message : 'Unknown error'
+            message: 'Error searching for scammer'
         });
     }
 };

@@ -119,7 +119,7 @@ const NavBar = () => {
           {/* Mobile menu with profile image */}
           <div className="md:hidden flex items-center space-x-2">
             {isAuthenticated && user?.profilePicture && (
-              <div className="h-8 w-8 rounded-full border-2 border-red-500 overflow-hidden">
+              <div className="h-8 w-8 rounded-full border-2  overflow-hidden">
                 <img
                   src={user.profilePicture}
                   alt={user.username || "Profile"}
