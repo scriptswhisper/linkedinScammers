@@ -211,6 +211,7 @@ npm run dev
 ### Scammer Model
 
     ``` bash
+
         interface IScammer {
     _id: ObjectId;
     profileLink: string;
@@ -248,13 +249,13 @@ npm run dev
 
 The project includes Jest for testing backend functionality. To run tests:
 
-``` bash
-cd be
-npm test    
+ ``` bash
+ cd be
+ npm test    
  ```
  To run tests in watch mode:
 
-``` bash
+ ``` bash
  npm run test:watch
  ```
 
