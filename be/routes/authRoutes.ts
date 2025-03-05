@@ -37,6 +37,8 @@ if (process.env.NODE_ENV === 'production') {
   frontendURL = process.env.FRONTEND_URL_DEV || 'http://localhost:5173';
 }
 
+console.log("frontend from server authRoutes: ", frontendURL)
+
 // LinkedIn callback route
 router.get('/linkedin/callback',
   passport.authenticate('linkedin', {

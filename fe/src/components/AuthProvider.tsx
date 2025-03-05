@@ -1,11 +1,19 @@
 import React, { useState, useEffect, ReactNode } from "react";
 import { AuthContext, User } from "../context/AuthContext";
 import { useLocation } from "react-router-dom";
-// Props for the AuthProvider component
-// const API_URL = (import.meta as any).env?.VITE_API_URL || 'http://localhost:3005';
+
+// Determine the base URL based on the environment
+const BASE_URL =
+  import.meta.env.VITE_ENV_MODE === "production"
+    ? import.meta.env.VITE_PROD_SERVER_URL
+    : import.meta.env.VITE_LOCAL_SERVER_URL;
+
+console.log("BASE_URL in AuthProvider FE : ", BASE_URL);
 interface AuthProviderProps {
   children: ReactNode;
 }
+
+console.log("BASE_URL in AuthProvider.tsx FE : ", BASE_URL);
 
 // Auth Provider component that will wrap your app
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
@@ -74,7 +82,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const loginWithLinkedIn = () => {
     // Redirect to the LinkedIn OAuth endpoint
-    window.location.href = "http://localhost:3005/api/auth/linkedin";
+    window.location.href = `${BASE_URL}/api/auth/linkedin`;
   };
 
   return (

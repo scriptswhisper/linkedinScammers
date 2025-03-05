@@ -1,7 +1,20 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from 'axios';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const API_URL = (import.meta as any).env?.VITE_API_URL || 'http://localhost:3005';
+const VITE_ENV_MODE = (import.meta as any).env?.VITE_ENV_MODE || 'development';
+const VITE_PROD_SERVER_URL = (import.meta as any).env?.VITE_PROD_SERVER_URL || 'https://production.example.com';
+const VITE_LOCAL_SERVER_URL = (import.meta as any).env?.VITE_LOCAL_SERVER_URL || 'http://localhost:3005';
+
+let API_URL: string;
+
+if (VITE_ENV_MODE === 'production') {
+    API_URL = VITE_PROD_SERVER_URL;
+} else {
+    API_URL = VITE_LOCAL_SERVER_URL;
+}
+
+console.log("API_URL in fe scammerApi.ts:", API_URL);
+
 
 export interface ScammerSearchResponse {
     success: boolean;
